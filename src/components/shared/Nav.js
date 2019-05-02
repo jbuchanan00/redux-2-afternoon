@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import "./../Budget/Budget.css"
+import { connect } from 'react-redux';
+import {requestUserData} from "../../ducks/userReducer"
 
 class Nav extends Component {
   render() {
-    let { firstName, lastName } = this.props;
+    
+    let { firstName, lastName } = this.props.user;
     if (!firstName) firstName = 'MISSING'
     if (!lastName) lastName = 'MISSING'
 
@@ -20,4 +23,8 @@ class Nav extends Component {
   }
 }
 
-export default Nav
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps, {requestUserData})(Nav)
